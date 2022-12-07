@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="robots" content="noindex,nofollow"/>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <head>
+        <meta charset="utf-8"/>
+        <title>Neo::HRIS</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta content="" name="description"/>
+        <meta content="" name="author"/>
+
+        <link rel="shortcut icon" href="<?= $this->basePath('favicon.ico') ?>"/>
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="<?= $this->basePath('css/fonts.css') ?>" rel="stylesheet"
+              type="text/css"/>
+        <link href="<?= $this->basePath('assets/global/plugins/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet"
+              type="text/css"/>
+        <link href="<?= $this->basePath('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') ?>"
+              rel="stylesheet" type="text/css"/>
+        <link href="<?= $this->basePath('assets/global/plugins/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet"
+              type="text/css"/>
+        <!-- END GLOBAL MANDATORY STYLES -->
+
+        <!-- BEGIN PAGE LEVEL STYLES -->
+        <link href="<?= $this->basePath('css/login2.css') ?>" rel="stylesheet" type="text/css"/>
+        <!-- END PAGE LEVEL SCRIPTS -->
+
+        <link href="<?= $this->basePath('assets/global/css/components-md.min.css') ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= $this->basePath('assets/global/css/plugins-md.min.css') ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= $this->basePath('assets/layouts/layout/css/layout.min.css') ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= $this->basePath('assets/layouts/layout/css/themes/darkblue.min.css') ?>" rel="stylesheet"
+              type="text/css"/>
+
+    </head>
+    <!-- END HEAD -->
+    <!-- BEGIN BODY -->
+    <body class="login">
+        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        <div class="menu-toggler sidebar-toggler">
+        </div>
+        <!-- END SIDEBAR TOGGLER BUTTON -->
+
+        <!-- BEGIN LOGIN -->
+        <div class="content">
+            <!-- BEGIN LOGO -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="<?= $this->basePath('img/neo-hris.png') ?>" style="height: 44px;" alt=""/>
+                </a>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN LOGIN FORM -->
+            <?php
+            print $this->content;
+            ?>
+            <!-- END LOGIN FORM -->
+        </div>
+        <div class="copyright hide">
+            2014 © Metronic. Admin Dashboard Template.
+        </div>
+        <!-- END LOGIN -->
+
+        <!--[if lt IE 9]>
+        <script src="<?= $this->basePath('assets/global/plugins/respond.min.js') ?>"></script>
+        <script src="<?= $this->basePath('assets/global/plugins/excanvas.min.js') ?>"></script>
+        <![endif]-->
+
+        <?php
+        print $this->headScript()
+                        ->prependFile($this->basePath('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js'))
+                        ->prependFile($this->basePath('assets/global/plugins/jquery.blockui.min.js'))
+                        ->prependFile($this->basePath('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'))
+                        ->prependFile($this->basePath('assets/global/plugins/js.cookie.min.js'))
+                        ->prependFile($this->basePath('assets/global/plugins/bootstrap/js/bootstrap.min.js'))
+                        ->prependFile($this->basePath('assets/global/plugins/jquery.min.js'));
+        ?>
+    </body>
+
+</html>

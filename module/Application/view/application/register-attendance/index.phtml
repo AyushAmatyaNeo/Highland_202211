@@ -1,0 +1,68 @@
+<?php
+$form->setAttribute('role', 'form');
+$form->setAttribute('class', 'login-form');
+
+$username = $form->get("username");
+$username->setAttribute('id', 'form-username');
+$username->setAttribute('class', 'form-control form-control-solid placeholder-no-fix');
+$username->setAttribute('placeholder', 'Username...');
+$username->setAttribute('required', true);
+
+$password = $form->get('password');
+$password->setAttribute('id', 'form-password');
+$password->setAttribute('class', 'form-control form-control-solid placeholder-no-fix');
+$password->setAttribute('placeholder', 'Password...');
+$password->setAttribute('required', true);
+
+$submit = $form->get('submit');
+$submit->setAttribute('value', 'Register Time');
+$submit->setAttribute('class', 'btn btn-primary btn-block uppercase loginbtn');
+
+$form->setAttribute('action', $this->url('registerAttendance', ['action' => 'authenticate']));
+$form->prepare();
+
+print $this->form()->openTag($form);
+?>
+<div class="form-title">
+    <?php
+    if ($this->messages) {
+        foreach ($this->messages as $message) {
+            print '<span class="form-subtitle error-message">' . $message . '</span>';
+            print '<span class="form-subtitle error-message bigtext">Please login to continue.</span>';
+        }
+    } else {
+        ?>
+        <span class="form-title">Welcome.</span>
+        <span class="form-subtitle">Please Register Attendance.</span>
+        <?php
+    }
+    ?>
+</div>
+<div class="alert alert-danger display-hide">
+    <button class="close" data-close="alert"></button>
+    <span>
+        Enter any username and password.
+    </span>
+</div>
+<div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Username</label>
+    <?php print $this->formElement($username); ?>
+    <?php print $this->formElementErrors()->render($username, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Password</label>
+    <?php print $this->formElement($password); ?>
+    <?php print $this->formElementErrors()->render($password, ['class' => 'help-block']) ?>
+</div>
+<div class="form-actions">
+    <div class="pull-left">
+        <?php
+        print $this->formSubmit($submit);
+        ?>
+    </div>
+</div>
+
+<?php
+print $this->form()->closeTag();
+?>
+

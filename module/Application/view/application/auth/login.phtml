@@ -1,0 +1,114 @@
+<?php
+$form->setAttribute('role', 'form');
+$form->setAttribute('class', 'login-form');
+
+$username = $form->get("username");
+$username->setAttribute('id', 'form-username');
+$username->setAttribute('class', 'form-control form-control-solid placeholder-no-fix');
+$username->setAttribute('placeholder', 'Username...');
+$username->setAttribute('required', true);
+
+$password = $form->get('password');
+$password->setAttribute('id', 'form-password');
+$password->setAttribute('class', 'form-control form-control-solid placeholder-no-fix');
+$password->setAttribute('placeholder', 'Password...');
+$password->setAttribute('required', true);
+$password->setAttribute('AUTOCOMPLETE', 'off');
+
+$rememberme = $form->get('rememberme');
+$rememberme->setAttribute('class', '');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary btn-block uppercase loginbtn');
+
+$form->setAttribute('action', $this->url('auth/process', ['action' => 'authenticate']));
+$form->prepare();
+
+print $this->form()->openTag($form);
+?>
+<div class="form-title">
+    <?php
+    if ($this->messages) {
+        foreach ($this->messages as $message) {
+            print '<span class="form-subtitle error-message">' . $message . '</span></br>';
+            print '<span class="form-subtitle error-message bigtext">Login to continue.</span>';
+        }
+    } else {
+        ?>
+        <span class="form-title">Welcome.</span>
+        <span class="form-subtitle">Please login.</span>
+    <?php /* <span class="form-subtitle"><a target="_blank" href="<?=$this->basePath('HRIS-docs/build/HRIS.html')?>"><button class="btn-link" type="button">Manual</button></a></span> */
+     ?>
+        <?php
+    }
+    ?>
+</div>
+<div class="alert alert-danger display-hide">
+    <button class="close" data-close="alert"></button>
+    <span>
+        Enter any username and password.
+    </span>
+</div>
+
+<?php
+date_default_timezone_set("Asia/Kathmandu");
+$serverTime=localtime(time(),true);
+$serverTimeString=$serverTime['tm_hour'].':'.$serverTime['tm_min'];
+ //echo '</br>'.$serverTimeString;
+$currTime= new dateTime($serverTimeString);
+$morningFrom= new dateTime('9:00');
+$morningTo= new dateTime('10:30');
+$eveningFrom= new dateTime('16:30');
+$eveningTo= new dateTime('17:30');
+// $currTime= new dateTime('10:30');
+
+// if(($currTime < $morningFrom || $currTime > $morningTo)  &&  ($currTime < $eveningFrom || $currTime > $eveningTo) || $type=='admin' ){	
+
+?>
+<div class="form-group">
+    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+    <label class="control-label visible-ie8 visible-ie9">Username</label>
+    <?php print $this->formElement($username); ?>
+    <?php print $this->formElementErrors()->render($username, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <label class="control-label visible-ie8 visible-ie9">Password</label>
+    <?php print $this->formElement($password); ?>
+    <?php print $this->formElementErrors()->render($password, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+// }
+?>
+
+<div class="form-actions">
+    <div class="pull-left">
+        <?php
+	//if (($currTime < $morningFrom || $currTime > $morningTo) && ($currTime < $eveningFrom || $currTime > $eveningTo) || $type == 'admin') {
+            print $this->formSubmit($submit);
+     //   }
+        ?>
+    </div>
+    <div class="pull-right" <?php if(!($preference->allowSystemAttendance == 'Y')) {
+            echo 'style="display:none;"';
+        } ?>>
+        <a href="<?= $this->url('registerAttendance') ?>" id="forget-password" class="forget-password">Register Attendance </a>
+    </div>
+</div>
+        <?php
+	//	if(($currTime < $morningFrom || $currTime > $morningTo)  &&  ($currTime < $eveningFrom || $currTime > $eveningTo) || $type=='admin' ){	
+        ?>
+<div class="form-actions ">
+    <div class="pull-left">
+        <label class="rememberme check">
+<?php print $this->formElement($rememberme); ?>
+            Remember me </label>
+    </div>
+    <div class="pull-right forget-password-block">
+        <a href="<?= $this->url("recover"); ?>" id="forget-password" class="forget-password">Forgot Password?</a>
+    </div>
+</div>
+<?php
+//		}
+print $this->form()->closeTag();
+?>
